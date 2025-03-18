@@ -13,3 +13,19 @@
 body {
     margin: 0;
 }
+/* related width*/
+.w-50 {
+    width: 50%;
+}
+
+.w-100 {
+    width: 100%;
+}
+
+/* related index page*/
+.main {
+    display: flex;
+    max-width: 1000px;
+    margin: auto;
+    align-items: center;
+}
