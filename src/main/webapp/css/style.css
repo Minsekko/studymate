@@ -129,3 +129,48 @@ body {
     margin: 0 auto;
 
 }
+
+/* related my page ------------------------*/
+.my-main {
+    display: flex;
+    gap : 30px;
+    padding : 40px 0px;
+}
+.my-main-nav   {
+    list-style: none;
+    padding : 20px;
+    margin: 0px;
+    line-height: 30px;
+    background-color: #ffffff;
+}
+.my-main-nav li   {
+    padding :8px;
+    cursor: pointer;
+    font-size: 0.85em;
+}
+
+.my-main-nav .active {
+    font-weight: bold;
+    background-color: #f4f4f4;
+}
+.my-main .content {
+    padding : 20px;
+    flex : 1;
+    background-color: #ffffff;
+}
+.my-main .content > * {
+    border-bottom:  1px solid rgba(0,0,0,.08);
+}
+.my-main .content ul {
+    list-style: none;
+    line-height: 40px;
+}
+.my-main .content  li {
+    display: flex;
+    gap : 20px;
+    font-size : 0.8em;
+    align-items: baseline;
+}
+.my-main .content  span {
+    font-size: 1.5em;
+}

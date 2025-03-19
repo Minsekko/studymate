@@ -71,4 +71,10 @@ public class AuthController {
         }
     }
 
+    @RequestMapping("/logout")
+    public String logoutHandle(HttpSession session){
+        session.invalidate();
+        return "redirect:/index";
+    }
+
 }
