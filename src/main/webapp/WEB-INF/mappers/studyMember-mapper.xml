@@ -6,12 +6,12 @@
     <insert id="createApproved" parameterType="studyMember">
         insert into study_members (user_id, group_id, role, applied_at, joined_at)
         values
-        (#{userId, #{groupId},#{role}, now(),now())
+        (#{userId}, #{groupId},#{role}, now(),now())
     </insert>
     <insert id="createPending" parameterType="studyMember">
         insert into study_members (user_id, group_id, role, applied_at)
         values
-        (#{userId, #{groupId},#{role}, now())
+        (#{userId}, #{groupId},#{role}, now())
     </insert>
     <update id="updateJoinedAtById" parameterType="int">
         update study_members set joined_at = now() where id = #{id}

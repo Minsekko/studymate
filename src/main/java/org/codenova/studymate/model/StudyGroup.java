@@ -10,7 +10,7 @@ public class StudyGroup {
     private String name;
     private String type;
     private String goal;
-    private String createId;
-    private String createAt;
+    private String creatorId;
+    private String creatAt;
     private String memberCont;
 }
