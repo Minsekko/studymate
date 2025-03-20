@@ -23,14 +23,14 @@
 </div>
 <div >
     <div class="study-main wrap">
-        <form style="padding: 20px 0px;">
+        <form action="${pageContext.request.contextPath}/study/create/verify" method="post" style="padding: 20px 0px;">
             <label class="label">스터디 이름</label>
             <div style="padding:8px 0px" class="bottom-border-div">
-                <input type="text" placeholder="스터디 이름 입력" class="input-text"/>
+                <input type="text" placeholder="스터디 이름 입력" class="input-text" name="name"/>
             </div>
             <label class="label">스터디 목표</label>
             <div style="padding:8px 0px" class="bottom-border-div">
-                <input type="text" placeholder="스터디 목표 입력" class="input-text"/>
+                <input type="text" placeholder="스터디 목표 입력" class="input-text" name="goal"/>
             </div>
             <label class="label">스터디 공개</label>
             <div class="type-box">
