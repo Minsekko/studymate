@@ -17,4 +17,8 @@
         select * from study_groups where name like #{word} or goal like #{word}
     </select>
 
+    <select id="findById" parameterType="string" resultType="studyGroup">
+        select * from study_groups where id = #{id}
+    </select>
+
 </mapper>
