@@ -1,4 +1,4 @@
-package org.codenova.studymate.model;
+package org.codenova.studymate.model.entity;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -12,5 +12,5 @@ public class StudyGroup {
     private String goal;
     private String creatorId;
     private String creatAt;
-    private String memberCont;
+    private String memberCount;
 }

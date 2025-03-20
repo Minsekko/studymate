@@ -9,10 +9,13 @@
 <div class="bottom-border-div">
     <div class="index-header wrap">
         <div>
-        <a href="${pageContext.request.contextPath}/index">
-            <img src="${pageContext.request.contextPath}/image/header-logo.png" style="height: 35px"/>
-        </a>
-
+            <a href="${pageContext.request.contextPath}/index">
+                <img src="${pageContext.request.contextPath}/image/header-logo.png" style="height: 35px"/>
+            </a>
+            <form action="${pageContext.request.contextPath}/study/search" style="margin: 0">
+                <input type="text" name="word" style="border-radius: 20px; width:300px; padding:4px 15px;
+background-color: #afafaf; color:white" placeholder="스터디 검색" value="${param.word}">
+            </form>
         </div>
         <div>
             <a href="${pageContext.request.contextPath}/my/profile">

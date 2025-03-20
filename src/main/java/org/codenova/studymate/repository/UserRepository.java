@@ -2,12 +2,10 @@ package org.codenova.studymate.repository;
 
 
 import lombok.AllArgsConstructor;
-import org.codenova.studymate.model.Avatar;
-import org.codenova.studymate.model.User;
+import org.codenova.studymate.model.entity.User;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
 @Repository
 @AllArgsConstructor
 public class UserRepository {
