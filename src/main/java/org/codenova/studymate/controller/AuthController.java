@@ -9,6 +9,7 @@ import org.codenova.studymate.repository.AvatarRepository;
 import org.codenova.studymate.repository.LoginLogRepository;
 import org.codenova.studymate.repository.UserRepository;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -50,6 +51,7 @@ public class AuthController {
         return "auth/login";
     }
 
+    @Transactional
     @RequestMapping("/login/verify")
     public String loginVerifyHandle(@RequestParam("id") String id,
                                     @RequestParam("password") String password,
