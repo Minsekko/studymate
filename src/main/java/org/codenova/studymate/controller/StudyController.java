@@ -35,7 +35,7 @@ public class StudyController {
     @Transactional
     @RequestMapping("/create/verify")
     public String createVerifyHandle(@ModelAttribute StudyGroup studyGroup,
-                                     @SessionAttribute("user")User user) {
+                                     @SessionAttribute("user") User user) {
         String randomId = UUID.randomUUID().toString().substring(24);
         studyGroup.setId(randomId);
         studyGroup.setCreatorId(user.getId());
@@ -46,60 +46,72 @@ public class StudyController {
         studyMember.setRole("리더");
         studyMemberRepository.createApproved(studyMember);
         studyGroupRepository.addMemberCountById(studyGroup.getId());
-        return "redirect:/";
+        return "redirect:/study/"+randomId;
     }
+
     @RequestMapping("/search")
-    public String searchHandle(@RequestParam("word") Optional<String> word, Model model){
-        if(word.isEmpty()) {
+    public String searchHandle(@RequestParam("word") Optional<String> word, Model model) {
+        if (word.isEmpty()) {
             return "redirect:/";
         }
         String wordValue = word.get();
-        List<StudyGroup> result = studyGroupRepository.findByNameLikeOrGoalLike("%"+wordValue+"%");
+        List<StudyGroup> result = studyGroupRepository.findByNameLikeOrGoalLike("%" + wordValue + "%");
         List<StudyGroupWithCreator> convertedResult = new ArrayList<>();
         for (StudyGroup one : result) {
             User found = userRepository.findById(one.getCreatorId());
             StudyGroupWithCreator c = StudyGroupWithCreator.builder().group(one).creator(found).build();
             convertedResult.add(c);
         }
-        model.addAttribute("count",convertedResult.size());
-        model.addAttribute("result",convertedResult);
+        model.addAttribute("count", convertedResult.size());
+        model.addAttribute("result", convertedResult);
         return "study/search";
     }
 
     @RequestMapping("/{id}")
-    public String detailHandle(@PathVariable("id")String id, Model model) {
+    public String detailHandle(@PathVariable("id") String id, Model model) {
         System.out.println(id);
 
         StudyGroup group = studyGroupRepository.findById(id);
-        if(group == null) {
+        if (group == null) {
             return "redirect:/";
         }
-        model.addAttribute("group",group);
+        model.addAttribute("group", group);
 
         return "study/view";
     }
 
     @Transactional
     @RequestMapping("/{id}/join")
-    public String joinHandle(@PathVariable("id")String id,
+    public String joinHandle(@PathVariable("id") String id,
                              @SessionAttribute("user") User user) {
-
-        StudyMember member = StudyMember.builder().
-                                        userId(user.getId()).groupId(id).role("맴버").build();
 
 //        member.setUserId(user.getId());
 //        member.setGroupId(id);
 //        member.setRole("맴버");
 
-        StudyGroup group = studyGroupRepository.findById(id);
+        List<StudyMember> list = studyMemberRepository.studyMemberIdCheck(user.getId());
 
-        if (group.getType().equals("공개")) {
-            studyMemberRepository.createApproved(member);
-            studyGroupRepository.addMemberCountById(id);
-        } else {
-            studyMemberRepository.createPending(member);
+        boolean alreadyExists = false;
+
+        for (StudyMember one : list) {
+            if (one.getGroupId().equals(id)) {
+                alreadyExists = true;
+                break;
+            }
         }
-        return "redirect:/study/"+id;
+
+        if (!alreadyExists) {
+            StudyMember member = StudyMember.builder().
+                    userId(user.getId()).groupId(id).role("맴버").build();
+            StudyGroup group = studyGroupRepository.findById(id);
+            if (group.getType().equals("공개")) {
+                studyMemberRepository.createApproved(member);
+                studyGroupRepository.addMemberCountById(id);
+            } else {
+                studyMemberRepository.createPending(member);
+            }
+        }
+        return "redirect:/study/" + id;
     }
 
 }
