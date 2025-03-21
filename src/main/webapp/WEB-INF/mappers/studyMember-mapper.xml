@@ -19,4 +19,8 @@
     <select id="studyMemberIdCheck" parameterType="string" resultType="studyMember">
         select * from study_members where user_id = #{id}
     </select>
+
+    <select id="findByUserIdAndGroupId" resultType="studyMember" parameterType="hashmap">
+        select * from study_members where user_id = #{id} and group_id = #{groupId}
+    </select>
 </mapper>
