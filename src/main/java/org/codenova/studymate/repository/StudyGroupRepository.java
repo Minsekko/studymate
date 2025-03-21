@@ -32,4 +32,7 @@ public class StudyGroupRepository {
         return sqlSessionTemplate.selectOne("studyGroup.findById", id);
     }
 
+    public int deleteById(String groupId ) {
+        return sqlSessionTemplate.delete("studyGroup.deleteById", groupId);
+    }
 }

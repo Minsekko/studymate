@@ -28,5 +28,9 @@
         delete from study_members where id = #{id}
     </delete>
 
+    <delete id="deleteByGroupId" parameterType="String">
+        delete from study_members where group_id #{groupId}
+    </delete>
+
 
 </mapper>
