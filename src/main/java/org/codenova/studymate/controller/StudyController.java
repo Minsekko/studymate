@@ -91,7 +91,6 @@ public class StudyController {
             //리더이다.
             model.addAttribute("status", "LEADER");
         }
-
         model.addAttribute("group", group);
 
         return "study/view";
@@ -130,5 +129,40 @@ public class StudyController {
         }
         return "redirect:/study/" + id;
     }
+
+    //탈퇴 요청 처리 핸들러
+    @RequestMapping("/{groupId}/leave")
+    public String leaveHandle(@PathVariable("groupId") String groupId, @SessionAttribute("user") User user, Model model) {
+        String userId = user.getId();
+
+//        Map map = new HashMap();
+//        map.put("UserId",userId);
+//        map.put("groupId",groupId);
+
+        Map map = Map.of("groupId",groupId,"userId",userId);
+
+        StudyMember found = studyMemberRepository.findByUserIdAndGroupId(map);
+        studyMemberRepository.deleteById(found.getId());
+
+        studyGroupRepository.subtractMemberCountById(groupId);
+
+        return "redirect:/";
+    }
+
+    //신청 철회 요청 처리 핸들러
+    @RequestMapping("/{groupId}/cancel")
+    public String cancelHandle(@PathVariable("groupId") String groupId, @SessionAttribute("user") User user, Model model) {
+        String userId = user.getId();
+
+        Map map = Map.of("groupId",groupId,"userId",userId);
+
+        StudyMember found = studyMemberRepository.findByUserIdAndGroupId(map);
+        if(found != null && found.getJoinedAt() == null && found.getRole().equals("맴버")) {
+            studyMemberRepository.deleteById(found.getId());
+        }
+        return "redirect:/study" + groupId ;
+    }
+
+
 
 }

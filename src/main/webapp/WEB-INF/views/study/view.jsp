@@ -38,7 +38,7 @@ background-color: #afafaf; color:white" placeholder="스터디 검색" value="${
                 </div>
 
                 <c:choose>
-                    <c:when test="${status == 'NOT_JONED'}">
+                    <c:when test="${status == 'NOT_JOINED'}">
                         <p>
                             <a href="${pageContext.request.contextPath}/study/${group.id}/join"
                             <button>스터디가입하기</button>
@@ -52,6 +52,7 @@ background-color: #afafaf; color:white" placeholder="스터디 검색" value="${
                     <c:when test="${status == 'MEMBER'}">
                         <button>스터디 탈퇴하기</button>
                     </c:when>
+
                     <c:otherwise>
                         <button>스터디 해산하기</button>
                     </c:otherwise>

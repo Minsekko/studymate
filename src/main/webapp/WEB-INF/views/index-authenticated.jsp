@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -48,29 +49,17 @@ display: flex; align-items: center">
             </a>
 
 
-
-            <a href="#" style="display: block; text-decoration: none">
+            <c:forEach items="${studyList}" var="one">
+            <a href="${pageContext.request.contextPath}/study/${one.groupId}" style="display: block; text-decoration: none">
                 <div style="border:1px solid rgba(0, 0, 0, .3); border-radius: 10px;
                             width: 156px; height: 156px;flex-shrink: 0; overflow: hidden">
                     <div style="background-color:#F5F6F8; display: flex; width: 100%; height: 100%; justify-content: center; align-items:center">
-
-
-                    </div>
-
-                </div>
-            </a>
-
-            <a href="#" style="display: block; text-decoration: none">
-                <div style="border:1px solid rgba(0, 0, 0, .3); border-radius: 10px;
-                            width: 156px; height: 156px;flex-shrink: 0; overflow: hidden">
-                    <div style="background-color:#F5F6F8; display: flex; width: 100%; height: 100%; justify-content: center; align-items:center">
-
+                    <h4>${one.groupId}</h4>
 
                     </div>
-
                 </div>
             </a>
-
+            </c:forEach>
         </div>
     </div>
 </div>

@@ -41,7 +41,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 20px;
+    padding: 10px 0px;
 }
 .index-header div{
     display: flex;
@@ -70,6 +70,7 @@ body {
     max-width: 1000px;
     margin: auto;
     align-items: center;
+    gap : 20px;
 }
 
 
@@ -113,21 +114,12 @@ body {
 
 
 /* related index-authenticated page  ------------------------ */
-.index-authenticated-header-wrap {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 20000;
+.bottom-border-div {
+    box-shadow: 0 1px 1px 0 rgba(0,0,0,.08);
 }
-.index-authenticated-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+.wrap {
     max-width: 960px;
-    height: 80px;
-    margin: 0 auto;
-
+    margin : auto;
 }
 
 /* related my page ------------------------*/
