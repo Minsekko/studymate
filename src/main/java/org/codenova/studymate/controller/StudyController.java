@@ -236,10 +236,11 @@ public class StudyController {
     public String postReactionHandel(@ModelAttribute PostReaction postReaction, @SessionAttribute("user") User user) {
 
         PostReaction found = postReactionRepository.findByWriterIdAndPostId(Map.of("writerId", user.getId(),"postId",postReaction.getPostId()));
-        if (found == null) {
+        if (found != null) {
+            postReactionRepository.deleteById(found.getId());
+        }
             postReaction.setWriterId(user.getId());
             postReactionRepository.create(postReaction);
-        }
 
         return "redirect:/study/" + postReaction.getGroupId();
     }
