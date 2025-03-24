@@ -49,6 +49,13 @@
             <version>6.2.3</version>
         </dependency>
 
+        <!-- related date formatting util -->
+        <dependency>
+            <groupId>org.ocpsoft.prettytime</groupId>
+            <artifactId>prettytime</artifactId>
+            <version>5.0.9.Final</version>
+        </dependency>
+
         <!-- related view template (jsp) -->
         <dependency>
             <groupId>jakarta.servlet.jsp.jstl</groupId>
