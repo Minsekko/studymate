@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import org.codenova.studymate.model.entity.Avatar;
 import org.codenova.studymate.model.entity.LoginLog;
 import org.codenova.studymate.model.entity.User;
+import org.codenova.studymate.model.query.UserWithAvatar;
 import org.codenova.studymate.repository.AvatarRepository;
 import org.codenova.studymate.repository.LoginLogRepository;
 import org.springframework.lang.Nullable;
@@ -23,7 +24,7 @@ public class MyController {
     private AvatarRepository avatarRepository;
 
     @RequestMapping("/profile")
-    public String myProfileHandle(Model model, @SessionAttribute("user") @Nullable User user) {
+    public String myProfileHandle(Model model, @SessionAttribute("user") @Nullable UserWithAvatar user) {
         //User user = (User)session.getAttribute("user");
         if (user == null){
             return "rediect:/auth/login";
@@ -33,8 +34,8 @@ public class MyController {
         LoginLog latestLog = logRepository.findLatestByUserId(user.getId());
         model.addAttribute("latestLog",latestLog);
 
-        Avatar avatar = avatarRepository.findById(user.getAvatarId());
-        model.addAttribute("userAvatar",avatar);
+        //Avatar avatar = avatarRepository.findById(user.getAvatarId());
+        //model.addAttribute("userAvatar",avatar);
 
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         String s = dtf.format(latestLog.getLoginAt());
