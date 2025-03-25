@@ -31,6 +31,16 @@
     <delete id="deleteByGroupId" parameterType="String">
         delete from study_members where group_id #{groupId}
     </delete>
-
+    <select id="findWithGroupDetailByUserId" parameterType="string" resultType="StudyMemberWithGroupDetail">
+        select
+             study_members.*,
+             study_groups.name as group_name,
+             study_groups.type as group_type,
+             study_groups.member_count
+        from
+             (study_members join study_groups on study_groups.id = study_members.group_id)
+        where
+             user_id = #{user_id}
+    </select>
 
 </mapper>

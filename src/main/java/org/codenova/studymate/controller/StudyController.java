@@ -119,7 +119,7 @@ public class StudyController {
                     .writerAvatar(avatarRepository.findById(userRepository.findById(post.getWriterId()).getAvatarId()).getImageUrl())
                     //.time(b < 60 ? "방금전" : b+"초 전")
                     .time(prettyTime.format(post.getWroteAt()))
-                    .reactions(postReactionRepository.findByPostId(post.getId()))
+                    .reactions(postReactionRepository.countFeelingByPostId(post.getId()))
                     .build();
             postMetas.add(cvt);
         }

@@ -34,8 +34,10 @@ public class WelcomeController {
             //Avatar userAvatar = avatarRepository.findById(user.getAvatarId());
             //model.addAttribute("userAvatar", userAvatar);
 
-            List<StudyMember> studyList = studyMemberRepository.studyMemberIdCheck(user.getId());
-            model.addAttribute("studyList",studyList);
+            //List<StudyMember> studyList = studyMemberRepository.studyMemberIdCheck(user.getId());
+//            var studyList = studyMemberRepository.findWithGroupDetailByUserId(user.getId());
+
+            model.addAttribute("studyList",studyMemberRepository.findWithGroupDetailByUserId(user.getId()));
 
             return "index-authenticated";
         }

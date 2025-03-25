@@ -17,4 +17,9 @@
     <delete id="deleteById" parameterType="int">
         delete from post_reactions where post_id =#{postId}
     </delete>
+    <select id="countFeelingByPostId" parameterType="int" resultType="FeelingStats">
+        select feeling,count(*) as count from post_reactions
+        where post_id = #{postId}
+        group by feeling;
+    </select>
 </mapper>

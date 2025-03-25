@@ -26,7 +26,7 @@ background-color: #afafaf; color:white" placeholder="스터디 검색" value="${
     </div>
 </div>
 <div>
-    <div class="wrap" >
+    <div class="wrap">
         <div style="background-color:#F5F6F8; border-radius: 20px; height: 150px; margin-top: 20px;
 display: flex; align-items: center">
             <img src="${pageContext.request.contextPath}/image/logo.png" style="height:85%"/>
@@ -42,24 +42,29 @@ display: flex; align-items: center">
                             스터디<br/>
                             만들기
                         </h3>
-
                     </div>
-
                 </div>
             </a>
-
 
             <c:forEach items="${studyList}" var="one">
-            <a href="${pageContext.request.contextPath}/study/${one.groupId}" style="display: block; text-decoration: none">
-                <div style="border:1px solid rgba(0, 0, 0, .3); border-radius: 10px;
-                            width: 156px; height: 156px;flex-shrink: 0; overflow: hidden">
-                    <div style="background-color:#F5F6F8; display: flex; width: 100%; height: 100%; justify-content: center; align-items:center">
-                    <h4>${one.groupId}</h4>
-
+                <a href="${pageContext.request.contextPath}/study/${one.groupId}"
+                   style="display: block; text-decoration: none">
+                    <div style="border:1px solid rgba(0, 0, 0, .3); border-radius: 10px;
+                                width: 156px; height: 156px;flex-shrink: 0; overflow: hidden">
+                        <div style="background-color:#444; display: flex;
+                            flex-direction: column;
+                            width: 100%; height: 100%; justify-content: center; align-items:center">
+                            <h4 style="color:#F5F6F8">
+                                    ${one.groupName}
+                            </h4>
+                            <span style="display: inline-block; background-color: white;
+                                padding : 3px 10px; border-radius: 8px; font-size: small">${one.groupType}</span>
+                        </div>
                     </div>
-                </div>
-            </a>
+                </a>
             </c:forEach>
+
+
         </div>
     </div>
 </div>
