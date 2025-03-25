@@ -222,7 +222,7 @@ public class StudyController {
                              @SessionAttribute("user") User user) {
         /*
          모델 attribute 로 파라미터는 받았을텐데, 빠진 정보들이 있을거임. 이걸 추가로 set
-         postRepository를 이용해서 create 메서드 작성
+         postRepository 를 이용해서 create 메서드 작성
          */
         post.setWriterId(user.getId());
         post.setWroteAt(LocalDateTime.now());
