@@ -28,7 +28,7 @@ public class StudyController {
     private AvatarRepository avatarRepository;
     private PostReactionRepository postReactionRepository;
 
-    @ModelAttribute("user")
+    @ModelAttribute("user")//AOP 관점지향 부가적인 빈번한 작업을 해주는 기능이라 생각하면됨.
     public UserWithAvatar addUser(@SessionAttribute("user") UserWithAvatar user){
         System.out.println("addUser....");
         return user;
